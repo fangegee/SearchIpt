@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      width: 800px;
+      margin: 100px auto;
+    }
+
+    input {
+      width: 780px;
+      height: 50px;
+      border: 1px solid #333;
+      outline: none;
+      padding-left: 20px;
+    }
+
+    ul {
+      display: block;
+      width: 800px;
+      list-style: none;
+    }
+
+    li {
+      /* margin-top: -1px; */
+      height: 30px;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      /* border: 1px solid #ccc; */
+    }
+
+    li:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <input type="text">
+    <ul>
+      <!-- <li></li> -->
+    </ul>
+  </div>
+  <script src="https://cdn.bootcss.com/qs/6.7.0/qs.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let ipt = document.querySelector('input')
+    let ul = document.querySelector('ul')
+
+    let dataList = null
+    ipt.addEventListener('input', function () {
+      console.log(this.value);
+      const script = document.createElement('script')
+      script.className = 'jsonp'
+      script.src = 'https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=30970,1447,21097,30788,30997,30823&wd=' + this.value + '&req=2&csor=2&pwd=zhong%27duan&cb=fn&_=1583810805101'
+
+      document.body.appendChild(script)
+
+    })
+    function fn(res) {
+      console.log(res.g);
+
+      let str = ``
+      if (!res.g) {
+        ul.style.display = 'none'
+      } else {
+        res.g.forEach(ele => {
+          str += '<li>' + ele.q + '</li>';
+          ul.innerHTML = str
+        });
+      }
+
+
+    }
+
+
+    // axios.get('https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=30970,1447,21097,30788,30997,30823&wd=%E5%89%8D%E7%AB%AF&req=2&csor=2&pwd=qian%27duan&cb=jQuery110203323566945959866_1583810805090&_=1583810805101')
+    //   .then(data => {
+    //     console.log(data);
+
+    //   })
+          // axios.get('https://www.baidu.com/sugrec', {
+      //   params: {
+      //     pre: 1,
+      //     p: 3,
+      //     ie: 'utf-8',
+      //     json: 1,
+      //     prod: 'pc',
+      //     from: 'pc_web',
+      //     sugsid: ' 30970,1447,21097,30788,30997,30823',
+      //     wd: '前端',
+      //     req: 2,
+      //     csor: 2,
+      //     pwd: iptVal,
+      //     cb: 'jQuery110203323566945959866_1583810805090',
+      //     _: 1583810805101
+      //   }
+      // }).then(data => {
+      //   console.log(data);
+      // })
+  </script>
+</body>
+
+</html>
+https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=30970,1447,21097,30788,30997,30823&wd=%E5%89%8D%E7%AB%AF&req=2&csor=2&pwd=qian%27duan&cb=jQuery110203323566945959866_1583810805090&_=1583810805101
